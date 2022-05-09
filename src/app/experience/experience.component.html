@@ -1,0 +1,109 @@
+<h2 style="text-align: center;padding: 3;font-weight: bold;">Add Experience</h2>
+<div class="container d-flex ">
+    <div class="container p-4 m-3 border border-dark rounded-3 ">
+
+        <form [formGroup]="experience">
+            <div class="container">
+                <!-- <h2>Add Experience</h2> -->
+                <table  class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Previous Company</td>
+                            <td>Job Tittle</td>
+                            <td>From Date</td>
+                            <td>To Date</td>
+                            <td>
+                                <div *ngFor="let hobby of experienceArray.controls;last as isLast;index as idx ">
+                                    <button type="submit" [disabled]="experience.invalid" mat-icon-button color="primary" *ngIf="isLast"
+                                        (click)="addExperience(false)">
+                                        <mat-icon>add_circle</mat-icon>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hobby of experienceArray.controls; last as isLast;index as idx">
+                            <td> <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="previousCompany">
+                        <span *ngIf="f['previousCompany']?.errors?.['required'] && f['previousCompany'].touched">*Previous Company is required</span>
+                    </td>
+                            <td> <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="jobTittle">
+                        <span *ngIf="f['jobTittle']?.errors?.['required'] && f['jobTittle'].touched">*Job Tittle is required</span>
+                    </td>
+                            <td>
+                                <ngx-datepicker class="form-control" formControlName="fromDate"
+                                    placeholder="Select Publish Date"></ngx-datepicker>
+                        <span *ngIf="f['fromDate']?.errors?.['required'] && f['fromDate'].touched">*FromDate is required</span>
+                            </td>
+                            <td>
+                                <ngx-datepicker class="form-control" formControlName="toDate"
+                                    placeholder="Select Publish Date"></ngx-datepicker>
+                        <span *ngIf="f['toDate']?.errors?.['required'] && f['toDate'].touched">*ToDate is required</span>
+                            </td>
+                            <td>
+                                <div class="col d-flex justify-content-end">
+                                    <button mat-icon-button color="warn" (click)="removeInputControl(idx);DeleteExperience()">
+                                        <mat-icon>remove_circle</mat-icon>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <button type="submit" [disabled]="experience.invalid" (click)="addExperience(true)" class="btn btn-primary">Submit</button>
+                <!-- <form action=""> 
+                    <h2>Experience</h2>
+                    <div *ngFor="let hobby of experienceArray.controls; last as isLast;index as idx">
+                        <div class="container p-2 m-3 border border-dark rounded-3">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Previous Company</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="previousCompany">
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Job Tittle</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="jobTittle">
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <button mat-icon-button color="warn" (click)="removeInputControl(idx)">
+                                        <mat-icon>remove_circle</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">From Date:</label>
+                                        <ngx-datepicker class="form-control" formControlName="fromDate"
+                                            placeholder="Select Publish Date"></ngx-datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">To Date:</label>
+                                        <ngx-datepicker class="form-control" formControlName="toDate"
+                                            placeholder="Select Publish Date"></ngx-datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+               
+                <div *ngFor="let hobby of experienceArray.controls;last as isLast;index as idx ">
+                    <button mat-icon-button color="primary" *ngIf="isLast" (click)="addInputControl();addExperience()">
+                        <mat-icon>add_circle</mat-icon>
+                    </button>
+                </div> -->
+            </div>
+        </form>
+    </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+</div>

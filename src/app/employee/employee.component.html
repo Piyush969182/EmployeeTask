@@ -1,0 +1,98 @@
+<h1 style="text-align: center;padding: 3;font-weight: bold;">Add Employee</h1>
+<div class="container d-flex ">
+    <div class="container p-4 m-3 border border-dark rounded-3 ">
+        <form [formGroup]="employee" (ngSubmit)="addEmployee()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">First Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your FirstName"
+                            formControlName="firstName">
+                        <span *ngIf="f['firstName']?.errors?.['required'] && f['firstName'].touched">*FirstName is required</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Middle Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your MiddleName"
+                            formControlName="middleName">
+                        <!-- <span *ngIf="f['name']?.errors?.['required'] && f['name'].touched">*Name is required</span> -->
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Last Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your LastName"
+                            formControlName="lastName">
+                        <span *ngIf="f['lastName']?.errors?.['required'] && f['lastName'].touched">*LastName is required</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Organization</label>
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="organizationId">
+                            <option value="">--Select Organization</option>
+                            <option *ngFor="let order of organization; let i = index"
+                                [value]="organization[i].organizationId">
+                                {{organization[i].name}}
+                            </option>
+                        </select>
+                        <span *ngIf="f['organizationId']?.errors?.['required'] && f['organizationId'].touched">*Organization is required</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Department</label>
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="departmentId">
+                            <option value="">--Select Department</option>
+                            <option *ngFor="let order of department; let i = index"
+                                [value]="department[i].departmentId">
+                                {{department[i].name}}
+                            </option>
+                        </select>
+                        <span *ngIf="f['departmentId']?.errors?.['required'] && f['departmentId'].touched">*Department is required</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Shift</label>
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="shiftId">
+                            <option value="">--Select Shift</option>
+                            <option *ngFor="let order of shift; let i = index" [value]="shift[i].shiftId">
+                                {{shift[i].shift}}
+                            </option>
+                        </select>
+                        <span *ngIf="f['shiftId']?.errors?.['required'] && f['shiftId'].touched">*Shift is required</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Email"
+                            formControlName="email">
+                        <span *ngIf="f['email']?.errors?.['required'] && f['email'].touched">*Email is required</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Mobile</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Mobile Number"
+                            formControlName="mobile">
+                        <span *ngIf="f['mobile']?.errors?.['required'] && f['mobile'].touched">*Mobile is required</span>
+                        <span *ngIf="f['mobile']?.errors?.['pattern']">Mobile Number must be 10 digit*</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+</div>
